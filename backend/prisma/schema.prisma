@@ -1,0 +1,116 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+model RH {
+  id String @id @default(uuid())
+  nome String
+  email String
+  
+  contato String
+  enderco String
+
+  password String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  @@map("rhs")
+}
+
+model User{
+  id String @id @default(uuid())
+  
+  nome String 
+  contato String
+  email String
+
+  endereco String
+  password String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+  agendamentos Agendamento[]
+  @@map("users")
+}
+
+model Dentista {
+  id String @id @default(uuid())
+  
+  nome String
+  contato String
+  email String
+  data_de_nascimento String
+
+  status Boolean @default(true)
+
+  endereco String
+  password String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  agendamentos Agendamento[]
+
+  @@map("dentistas")
+}
+
+model Secretaria{
+  id String @id @default(uuid())
+  
+  nome String 
+  contato String
+  
+  endereco String
+  password String
+
+  status Boolean @default(true)
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+
+  
+  @@map("secretarias")
+}
+
+model Servico {
+  id String @id @default(uuid())
+  nome String
+  valor String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  agendamentos Agendamento[]
+  
+  @@map("servicos")
+}
+
+model Agendamento{
+  id String @id @default(uuid())
+
+  descricao String
+  valor String
+
+  status Boolean @default(false)
+
+  user_id String
+  dentista_id String
+  servico_id String
+
+  created_at DateTime? @default(now())
+  updated_at DateTime? @default(now())
+
+  user User @relation(fields: [user_id], references: [id])
+  dentista Dentista @relation(fields: [dentista_id], references: [id])
+  servico Servico @relation(fields: [servico_id], references: [id])
+  
+}
