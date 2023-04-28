@@ -13,6 +13,8 @@ model RH {
   id String @id @default(uuid())
   nome String
   email String
+
+  status Boolean @default(true)
   
   contato String
   enderco String
