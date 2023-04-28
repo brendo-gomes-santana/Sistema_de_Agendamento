@@ -2,43 +2,51 @@ import prismaClient from "../../prisma"
 import { sign } from 'jsonwebtoken';
 import { compare } from "bcryptjs";
 
-import 'dotenv';
-
 class SessionRhService {
     async execute(email:string, password:string){
 
         if(!email || !password){
-            throw new Error('Coloque um email/senha')
+            throw new Error('Coloque Senha/Email')
         }
-
-        const Verificar = await prismaClient.rH.findFirst({
-            where: {email}
+        
+        const verificar = await prismaClient.rH.findFirst({
+            where: {
+                email: email
+            }
         })
 
-        if (!Verificar){
+        if(!verificar){
             throw new Error('Email/senha não existe')
         }
 
-        const SenhaCorreta = compare(password, Verificar.password);
+        if(verificar.status != true){
+            throw new Error('Usuário com status false.')
+        }
 
+        const SenhaCorreta = await compare(password, verificar.password);
         if(!SenhaCorreta){
             throw new Error('Senha Incorreta')
         }
 
         const token = sign(
             {
-                nome: Verificar.nome,
-                email: Verificar.email,
+                nome: verificar.nome,
+                email: verificar.email,
             },
-            process.env.JWT_SECRET,
+            '40ea851007f3f2bcdc26c64b206919fe',
             {
-                subject: Verificar.id,
+                subject: verificar.id,
                 expiresIn: '15d'
             }
         )
 
 
-        return {ok:true}
+        return {
+            id: verificar.id,
+            nome: verificar.nome,
+            email: verificar.email,
+            token: token
+        }
     }
 }
 
