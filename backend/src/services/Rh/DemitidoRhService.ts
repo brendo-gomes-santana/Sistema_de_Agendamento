@@ -1,15 +1,7 @@
 import prismaClient from "../../prisma";
 
 class DemitidoRhService{
-    async execute(id:string, funcionario: string){
-
-        const verificacaoSeEDoRH = await prismaClient.rH.findFirst({
-            where: { id }
-        })
-
-        if(!verificacaoSeEDoRH){
-            throw new Error('Você não é da equipe do RH.')
-        }
+    async execute(funcionario: string){
 
         const VerificadoSeJaFoiDemitido = await prismaClient.rH.findFirst({
             where: { id: funcionario }

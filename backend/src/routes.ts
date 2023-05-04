@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { Auth } from './middlewares/Auth';
 
+import { Auth } from './middlewares/Auth';
+import { ValidarRH } from "./middlewares/VerificarRH";
 
 import { CreateRhController } from "./controller/Rh/CreateRhController";
 import { SessionRhController } from "./controller/Rh/SessionRhController";
@@ -9,6 +10,8 @@ import { DemitidoRhController } from "./controller/Rh/DemitidoRhController";
 
 import { CreateSecretariaController } from "./controller/Secretaria/CreateSecretariaController";
 import { SessionSecretariaController } from "./controller/Secretaria/SessionSecretariaController";
+import { ListSecretariaController } from "./controller/Secretaria/ListSecretariaController";
+import { DemissaoSecretariaController } from "./controller/Secretaria/DemissaoSecretariaController";
 
 const router = Router();
 
@@ -20,10 +23,14 @@ router.post('/session/secretaria', new SessionSecretariaController().handle)
 //ROTA DE RH
 router.use(Auth)
 router.post('/create/rh', new CreateRhController().handle)
-router.get('/list/rh', new listRhController().handle)
-router.put('/demissao/rh', new DemitidoRhController().handle)
+router.get('/list/rh', ValidarRH, new listRhController().show)
+router.put('/demissao/rh', ValidarRH,  new DemitidoRhController().handle)
 
 //ROTA SECRETÁRIA
-router.post('/create/secretaria', new CreateSecretariaController().handle)
+router.post('/create/secretaria', ValidarRH, new CreateSecretariaController().handle)
+router.get('/list/secretaria', ValidarRH, new ListSecretariaController().show)
+router.put('/demissao/secretaria', ValidarRH, new DemissaoSecretariaController().handle)
+
+//ROTA SERVIÇO
 
 export {router};
