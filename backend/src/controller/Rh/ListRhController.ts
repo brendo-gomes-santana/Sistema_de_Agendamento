@@ -10,7 +10,6 @@ class listRhController {
         const listrhservice = new ListRhService();
         const list = await listrhservice.execute(status, id);
 
-
         return res.json(list)
     }
 }
