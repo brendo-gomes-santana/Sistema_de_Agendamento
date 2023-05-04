@@ -13,6 +13,10 @@ import { SessionSecretariaController } from "./controller/Secretaria/SessionSecr
 import { ListSecretariaController } from "./controller/Secretaria/ListSecretariaController";
 import { DemissaoSecretariaController } from "./controller/Secretaria/DemissaoSecretariaController";
 
+import { CreateServicoController } from "./controller/Servico/CreateServicoController";
+import { ListServicoController } from "./controller/Servico/ListServicoController";
+import { RemoveServicoController } from "./controller/Servico/RemoveServicoController";
+
 const router = Router();
 
 //ROTA DE LOGIN
@@ -32,5 +36,8 @@ router.get('/list/secretaria', ValidarRH, new ListSecretariaController().show)
 router.put('/demissao/secretaria', ValidarRH, new DemissaoSecretariaController().handle)
 
 //ROTA SERVIÇO
+router.post('/create/servico', new CreateServicoController().handle)
+router.get('/list/servico', new ListServicoController().show)
+router.delete('/remove/servico', new RemoveServicoController().handle)
 
 export {router};
