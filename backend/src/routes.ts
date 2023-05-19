@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import { Auth } from './middlewares/Auth';
 import { ValidarRH } from "./middlewares/VerificarRH";
+import { VerificarFunc } from "./middlewares/VerifcarFunc";
 
 import { CreateRhController } from "./controller/Rh/CreateRhController";
 import { SessionRhController } from "./controller/Rh/SessionRhController";
@@ -18,14 +19,21 @@ import { ListServicoController } from "./controller/Servico/ListServicoControlle
 import { RemoveServicoController } from "./controller/Servico/RemoveServicoController";
 
 import { createDentistacontroller } from "./controller/Dentista/createDentistacontroller";
-import { listDentistaController
- } from "./controller/Dentista/listDentistaController";
+import { listDentistaController } from "./controller/Dentista/listDentistaController";
+import { sessionDentistaController } from "./controller/Dentista/sessionDentistaController";
+import { demissaoDentistaController } from "./controller/Dentista/demissaoDentistaController";
+
+import { createUserController } from "./controller/Users/createUserController";
+import { sessionUserController } from "./controller/Users/sessionUserController";
+import { listUserController } from "./controller/Users/listUserController";
+
 const router = Router();
 
 //ROTA DE LOGIN
 router.post('/session/rh', new SessionRhController().handle)
 router.post('/session/secretaria', new SessionSecretariaController().handle)
-
+router.post('/session/dentista', new sessionDentistaController().hadnle)
+router.post('/session/user', new sessionUserController().handle)
 
 //ROTAS DE RH
 router.use(Auth)
@@ -45,5 +53,17 @@ router.delete('/remove/servico', new RemoveServicoController().handle)
 
 //ROTAS DENTISTA
 router.post('/create/dentista', ValidarRH, new createDentistacontroller().handle)
-router.get('/list/dentista', ValidarRH, new listDentistaController().show)
-export {router};
+router.get('/list/dentista', new listDentistaController().show)
+router.put('/demissao/dentista',ValidarRH ,new demissaoDentistaController().handle)
+
+//ROTAS USUÁRIO
+router.post('/create/user', new createUserController().handle)
+router.get('/list/user', new listUserController().show)
+
+//ROTAS AGENDAMENTO
+router.use(VerificarFunc)
+
+
+export { router };
+
+
