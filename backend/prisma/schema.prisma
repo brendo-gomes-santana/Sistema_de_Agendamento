@@ -100,7 +100,7 @@ model Agendamento{
 
   descricao String
   valor String
-
+  data_do_agendamento String
   status Boolean @default(false)
 
   user_id String

@@ -27,6 +27,10 @@ import { createUserController } from "./controller/Users/createUserController";
 import { sessionUserController } from "./controller/Users/sessionUserController";
 import { listUserController } from "./controller/Users/listUserController";
 
+import { createAgendamentoController } from "./controller/agendamento/createAgendamentoController";
+import { listAgendamentoController } from "./controller/agendamento/listAgendamentoController";
+import { concluindoAgendamentoController } from "./controller/agendamento/concluindoAgendamentoController";
+
 const router = Router();
 
 //ROTA DE LOGIN
@@ -62,7 +66,9 @@ router.get('/list/user', new listUserController().show)
 
 //ROTAS AGENDAMENTO
 router.use(VerificarFunc)
-
+router.post('/create/agendamento', new createAgendamentoController().handle)
+router.get('/list/agendamento', new listAgendamentoController().show)
+router.put('/concluir/agendamento', new concluindoAgendamentoController().handle)
 
 export { router };
 
