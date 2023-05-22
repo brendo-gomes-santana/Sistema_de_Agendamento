@@ -30,6 +30,8 @@ import { listUserController } from "./controller/Users/listUserController";
 import { createAgendamentoController } from "./controller/agendamento/createAgendamentoController";
 import { listAgendamentoController } from "./controller/agendamento/listAgendamentoController";
 import { concluindoAgendamentoController } from "./controller/agendamento/concluindoAgendamentoController";
+import { ListPorUserController } from "./controller/agendamento/ListPorUserController";
+import { listPorDentistaController } from "./controller/agendamento/listPorDentistaController";
 
 const router = Router();
 
@@ -65,10 +67,11 @@ router.post('/create/user', new createUserController().handle)
 router.get('/list/user', new listUserController().show)
 
 //ROTAS AGENDAMENTO
-router.use(VerificarFunc)
-router.post('/create/agendamento', new createAgendamentoController().handle)
-router.get('/list/agendamento', new listAgendamentoController().show)
-router.put('/concluir/agendamento', new concluindoAgendamentoController().handle)
+router.post('/create/agendamento', VerificarFunc, new createAgendamentoController().handle)
+router.get('/list/agendamento',VerificarFunc, new listAgendamentoController().show)
+router.put('/concluir/agendamento',VerificarFunc, new concluindoAgendamentoController().handle)
+router.get('/list/agendamento/dentista', VerificarFunc, new listPorDentistaController().show)
+router.get('/list/agendamento/user', new ListPorUserController().show)
 
 export { router };
 
