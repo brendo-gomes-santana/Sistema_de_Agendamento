@@ -13,7 +13,7 @@ class sessionUserService{
         if(!existeuser){throw new Error('Usuário não existe')}
 
         const senhaCorreta = await compare(passsword, existeuser.password)
-        console.log(senhaCorreta)
+
         if(!senhaCorreta){throw new Error('Senha incorreta')}
 
         const token = sign(
