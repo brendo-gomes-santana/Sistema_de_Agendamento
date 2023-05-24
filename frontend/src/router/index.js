@@ -1,13 +1,13 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
-import LoginUser from '../pages/LoginUser'
-
+import { BrowserRouter as Router} from 'react-router-dom'
+import RoutasNotAuth from './RotasNaoAuth'
+import RoutasAuthUser from './AuthUser'
 export default function RouterApp() {
   return (
-    <BrowserRouter>
-        <Routes>
-            <Route path='/' element={ <LoginUser/> }/>
-        </Routes>
-    </BrowserRouter>
+    <Router>
+      
+      <RoutasNotAuth/> 
+
+      <RoutasAuthUser/>
+    </Router>
   )
 }

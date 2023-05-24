@@ -16,8 +16,9 @@ export function Auth (req: Request, res:Response, next:NextFunction){
 
     try{
         const { sub } = verify(token, '40ea851007f3f2bcdc26c64b206919fe') as Payload;
-
         req.valicao_id = sub
+
+
         return next();
     }catch(err){
         return res.status(401).end()
