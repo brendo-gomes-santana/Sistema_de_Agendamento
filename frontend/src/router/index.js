@@ -29,18 +29,18 @@ export default function RouterApp() {
               <RotasPrivadasRH>
                 <Header fecharLogin='@rhInfor'>
                   <Link to='/rh'>Home</Link>
-                  <Link to='/rh/cadastra/rh'>Cadastrar Rh</Link>
+                  <Link to='/rh/cadastra'>Cadastrar</Link>
                   <Link to='#'>Teste</Link>
                   <Link to='#'>Teste</Link>
                 </Header> 
                 <HomeRh/>  
               </RotasPrivadasRH> }/>
 
-            <Route path='/rh/cadastra/rh' element={ 
+            <Route path='/rh/cadastra' element={ 
               <RotasPrivadasRH> 
                 <Header fecharLogin='@rhInfor'>
                   <Link to='/rh'>Home</Link>
-                  <Link to='/rh/cadastra/rh'>Cadastrar Rh</Link>
+                  <Link to='/rh/cadastra'>Cadastrar</Link>
                   <Link to='#'>Teste</Link>
                   <Link to='#'>Teste</Link>
                 </Header> 

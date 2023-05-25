@@ -11,7 +11,9 @@ interface DadosDeCadastroProps {
 
 class CreateSecretariaService{
     async execute({nome, contato, endereco, password}: DadosDeCadastroProps){
-
+        if(!nome || !contato || !endereco || !password){
+            throw new Error('Preenchar todos os campos')
+        }
 
         const password_hash = await hash(password, 10)
 
