@@ -29,6 +29,7 @@ export default function LoginProvider ({children}){
             localStorage.setItem('@rhInfor', JSON.stringify(rh))
             api.defaults.headers.Authorization = `Bearer ${r.data.token}`;
             setLoadingLogin(false)
+            toast.success('bem-vindo de volta')
             navigate('/rh')
 
         }).catch((err) => {
@@ -43,6 +44,7 @@ export default function LoginProvider ({children}){
         localStorage.removeItem(local)
         navigate('/')
     }
+    
     return(
         <LoginContext.Provider value={{
             LoginRh, 

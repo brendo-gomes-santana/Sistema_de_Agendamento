@@ -40,6 +40,6 @@ export default function PrivataRh ({children}){
     if(!authRH){
         return <Navigate to='/login/rh'/>
     }
-
+    
     return children
 }
