@@ -5,7 +5,6 @@ import { LoginContext } from "./LoginContext"
 
 export default function PrivataRh ({children}){
     const { authRH, loading } = useContext(LoginContext)
-    console.log(authRH)
     if(loading){
         return(
             <div>
@@ -14,7 +13,7 @@ export default function PrivataRh ({children}){
         )
     }
     if(!authRH){
-        return <Navigate to='/login/rh'/>
+        return <Navigate to='/'/>
     }
 
     return children

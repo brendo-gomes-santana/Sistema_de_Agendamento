@@ -6,14 +6,16 @@ import { toast } from "react-toastify";
 export const LoginContext = createContext({})
 
 export default function LoginProvider ({children}){
+    
     const navigate = useNavigate()
 
     const [rh, setRh] = useState(null)
     const [loadingLogin, setLoadingLogin] = useState(false)
+
     const [loading, setLoading] = useState(true)
 
     useEffect(()=> {
-        (()=> {
+        ( async ()=> {
             const dados = JSON.parse(localStorage.getItem('@rhInfor'))
             if(dados){
                 setRh(dados)
@@ -51,8 +53,7 @@ export default function LoginProvider ({children}){
 
     async function logoutRH(){
         localStorage.removeItem('@rhInfor')
-        navigate('/')
-
+        navigate('/login/rh')
     }
     return(
         <LoginContext.Provider value={{
@@ -60,8 +61,9 @@ export default function LoginProvider ({children}){
             loadingLogin,
             authRH: !!rh,
             rh,
+            logoutRH,
+            
             loading,
-            logoutRH
         }}>
             {children}
         </LoginContext.Provider>
