@@ -1,13 +1,10 @@
-import React, { useContext } from 'react'
-import { LoginContext } from '../../contexts/LoginContext'
-
+import React from 'react'
 export default function HomeRh() {
-  const { logoutRH } = useContext(LoginContext)
+
 
   return (
-    <div>
+    <main>
         <h1>Rota do Rh privata</h1>
-        <button onClick={()=> logoutRH()}>Sair</button>
-    </div>
+    </main>
   )
 }

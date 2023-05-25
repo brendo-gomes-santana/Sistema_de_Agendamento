@@ -1,21 +1,22 @@
 import prismaClient from "../../prisma";
 
 class ListRhService {
-    async execute(status:boolean){
+  async execute(status: boolean) {
+    const list = await prismaClient.rH.findMany({
+      where: {
+        status: status
+      },
+      select: {
+        id: true,
+        nome: true,
+        email: true,
+        contato: true,
+        status: true
+      }
+    });
 
-        const list = await prismaClient.rH.findMany({
-            where: { status },
-            select: { 
-                id: true, 
-                nome: true,
-                email: true,
-                contato: true,
-                status: true
-             }
-        })
-
-        return list;
-    }
+    return list;
+  }
 }
 
-export { ListRhService }
+export { ListRhService };

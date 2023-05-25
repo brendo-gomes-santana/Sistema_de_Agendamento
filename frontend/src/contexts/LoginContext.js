@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../service";
 import { toast } from "react-toastify";
@@ -11,19 +11,6 @@ export default function LoginProvider ({children}){
 
     const [rh, setRh] = useState(null)
     const [loadingLogin, setLoadingLogin] = useState(false)
-
-    const [loading, setLoading] = useState(true)
-
-    useEffect(()=> {
-        ( async ()=> {
-            const dados = JSON.parse(localStorage.getItem('@rhInfor'))
-            if(dados){
-                setRh(dados)
-                setLoading(false)
-            }
-            setLoading(false)
-        })()
-    },[])
 
     async function LoginRh(email, password){
         setLoadingLogin(true)
@@ -40,6 +27,7 @@ export default function LoginProvider ({children}){
 
             setRh(rh)
             localStorage.setItem('@rhInfor', JSON.stringify(rh))
+            api.defaults.headers.Authorization = `Bearer ${r.data.token}`;
             setLoadingLogin(false)
             navigate('/rh')
 
@@ -51,19 +39,20 @@ export default function LoginProvider ({children}){
         
     }
 
-    async function logoutRH(){
-        localStorage.removeItem('@rhInfor')
-        navigate('/login/rh')
+    async function logout(local){
+        localStorage.removeItem(local)
+        navigate('/')
     }
     return(
         <LoginContext.Provider value={{
             LoginRh, 
-            loadingLogin,
+            setRh,
             authRH: !!rh,
             rh,
-            logoutRH,
             
-            loading,
+            
+            loadingLogin,
+            logout,            
         }}>
             {children}
         </LoginContext.Provider>

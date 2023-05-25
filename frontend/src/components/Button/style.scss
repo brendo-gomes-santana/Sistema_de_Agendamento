@@ -7,4 +7,11 @@
     color: var(--branco);
     font-weight: bold;
     cursor: pointer;
+    transition: 0.7s;
+
+    &:hover{
+        color: var(--azul-500);
+        background-color: var(--branco);
+        border: 1px solid var(--azul-500)
+    }
 }

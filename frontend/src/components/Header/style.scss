@@ -1,0 +1,56 @@
+.containerHeader {
+    background-color: #5877E8;
+    width: 100%;
+    height: 5rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem;
+}
+
+.baseImgTitleHeader{
+    display: flex;
+    max-width: 20rem;
+    width: 50%;
+    justify-content: center;
+    align-items: center;
+    img{
+        max-width: 25%;
+    }
+    h1{
+        font-size: 20px;
+        color: var(--branco);
+    }
+}
+
+.buttonLogout{
+    width: 3.5rem;
+    max-width: 3.5rem;
+
+    max-height: 3rem;
+    height: 3rem;
+
+    background: transparent;
+    color: var(--branco);
+    border: 0;
+
+    font-size: 2.5rem;
+    cursor: pointer;
+}
+
+.baseNav{
+    max-width: 300px;
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    a{
+        color: #fff;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+}
