@@ -12,6 +12,7 @@ root.render(
     <ToastContainer 
       autoClose={2500}
       theme='colored'
+      position='top-center'
       pauseOnHover={false}
     />
     <RouterApp />

@@ -15,7 +15,10 @@ class CreateRhService {
         
         //verificar se já tem um email existe.
         const EmailExiste = await prismaClient.rH.findFirst({
-            where: { email }
+            where: { 
+                email,
+                status:true 
+            }
         })
         if(EmailExiste){
             throw new Error('Email já existe')

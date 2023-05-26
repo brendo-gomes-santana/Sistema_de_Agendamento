@@ -4,9 +4,9 @@ import { DemissaoSecretariaService } from "../../services/Secretaria/DemissaoSec
 
 class DemissaoSecretariaController{
     async handle(req: Request, res: Response){
-        const { funcionario } = req.body 
+        const { id_sec } = req.body
         const demissaoSecretaria = new DemissaoSecretariaService();
-        const demissa = await demissaoSecretaria.execute(funcionario)
+        const demissa = await demissaoSecretaria.execute(id_sec)
 
         return res.json(demissa)
     }

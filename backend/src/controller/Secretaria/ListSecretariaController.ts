@@ -4,7 +4,8 @@ import { ListSecretariaService } from "../../services/Secretaria/ListSecretariaS
 
 class ListSecretariaController {
     async show(req: Request, res: Response){
-        const { status } = req.body;
+        const  stts  = req.query.status as string
+        const status = stts === 'true'
 
         const listsecretaria = new ListSecretariaService();
         const lista = await listsecretaria.execute(status)

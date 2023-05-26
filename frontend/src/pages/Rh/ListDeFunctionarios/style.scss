@@ -23,3 +23,34 @@
         border-radius: 1rem;
     }
 }
+.BaseDasInfor{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.ContainerBaseDeInformação{
+    background-color: #928e8e31;
+    width: 90%;
+    padding: 1rem 2.5rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    line-height: 1.5rem;
+
+    border-radius: 1rem;
+    margin: 1rem;
+
+    button {
+        background-color: #ff0000;
+
+        &:hover {
+            font-weight: bold;
+            color: #ff0000;
+            border: 1px solid #ff0000;
+            background-color: #928e8e31;
+        }
+    }
+}

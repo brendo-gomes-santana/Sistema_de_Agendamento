@@ -29,7 +29,7 @@ export default function LoginProvider ({children}){
             localStorage.setItem('@rhInfor', JSON.stringify(rh))
             api.defaults.headers.Authorization = `Bearer ${r.data.token}`;
             setLoadingLogin(false)
-            toast.success('bem-vindo de volta')
+            toast.success(`Bem vindo de volta ${r.data.nome}`)
             navigate('/rh')
 
         }).catch((err) => {
@@ -41,6 +41,7 @@ export default function LoginProvider ({children}){
     }
 
     async function logout(local){
+        toast.success(`Volte Sempre`)
         localStorage.removeItem(local)
         navigate('/')
     }

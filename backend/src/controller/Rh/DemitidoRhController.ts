@@ -4,10 +4,10 @@ import { DemitidoRhService } from "../../services/Rh/DemitidoRhService";
 class DemitidoRhController{
     async handle(req: Request, res: Response){
 
-        const {  funcionario } = req.body;
+        const  id_rh  = req.body.id_rh as string
 
         const demitidorhservice = new DemitidoRhService();
-        const returno = await demitidorhservice.execute(funcionario)
+        const returno = await demitidorhservice.execute(id_rh)
 
         return res.json(returno)
     }

@@ -11,7 +11,8 @@ class SessionRhService {
         
         const verificar = await prismaClient.rH.findFirst({
             where: {
-                email: email
+                email: email,
+                status:true
             }
         })
 
