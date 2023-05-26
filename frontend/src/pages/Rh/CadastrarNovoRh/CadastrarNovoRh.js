@@ -87,6 +87,37 @@ export default function CadastrarNovoRh() {
       toast.error(err.response.data.error)
     })
   }
+
+  async function handleCadastrarNovoDentista(e){
+    e.preventDefault()
+    if(!nomeDentista || !emailDentista || !contatoDentista || !data_de_nascimento || 
+      !enderecoDentista || !passwordDentista){
+        toast.error('Preenchar todos os campos')
+        return;
+      }
+
+      await api.post('/create/dentista',{
+        nome: nomeDentista,
+        email: emailDentista,
+        contato: contatoDentista,
+        data_de_nascimento,
+        endereco: enderecoDentista,
+        password: passwordDentista
+      })
+      .then(()=> {
+        setNomeDentista('')
+        setEmailDentista('')
+        setContatoDentista('')
+        setData_de_nascimento('')
+        enderecoDentista('')
+        setPasswordDentista('')
+        toast.success('Dentista cadastra com sucesso!')
+      })
+      .catch((err)=> {
+      toast.error(err.response.data.error)
+      })
+  }
+
   return (
     <main className='ContainerNovoCadastroRh'>
       <div>
@@ -160,7 +191,7 @@ export default function CadastrarNovoRh() {
     { qualForm === '3' && (
           <>
           <h1>Cadastrar Novo Funcionário do Dentista</h1>
-          <form className='formNovoCadastroRh' onSubmit={handleCadastrarNovoRh}>
+          <form className='formNovoCadastroRh' onSubmit={handleCadastrarNovoDentista}>
             <label> 
               Nome: <Input placeholder='Digite o nome completo'
                     value={nomeDentista} onChange={ v => setNomeDentista(v.target.value) }/>

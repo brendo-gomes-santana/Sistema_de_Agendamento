@@ -1,0 +1,25 @@
+.ContainerListDeFuncionarios{
+    width: 100%;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem 1rem;
+}
+
+.basedeMenu{
+    width: 100%;
+    padding: 0 1rem;
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+    button{
+        font-size: 15px;
+        max-width: 13rem;
+        width: 90%;
+        margin: 0.5rem;
+        border-radius: 1rem;
+    }
+}

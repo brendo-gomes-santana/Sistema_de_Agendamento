@@ -12,6 +12,7 @@ import Home from '../pages/Home'
 import RotasPrivadasRH from '../contexts/RotaPrivataRh'
 import HomeRh from '../pages/Rh'
 import CadastrarNovoRh from '../pages/Rh/CadastrarNovoRh/CadastrarNovoRh'
+import ListdeTodoOsFuncionarios from '../pages/Rh/ListDeFunctionarios'
 
 export default function RouterApp() {
   return (
@@ -30,8 +31,7 @@ export default function RouterApp() {
                 <Header fecharLogin='@rhInfor'>
                   <Link to='/rh'>Home</Link>
                   <Link to='/rh/cadastra'>Cadastrar</Link>
-                  <Link to='#'>Teste</Link>
-                  <Link to='#'>Teste</Link>
+                  <Link to='/rh/funcionarios'>Funcionários</Link>
                 </Header> 
                 <HomeRh/>  
               </RotasPrivadasRH> }/>
@@ -41,10 +41,19 @@ export default function RouterApp() {
                 <Header fecharLogin='@rhInfor'>
                   <Link to='/rh'>Home</Link>
                   <Link to='/rh/cadastra'>Cadastrar</Link>
-                  <Link to='#'>Teste</Link>
-                  <Link to='#'>Teste</Link>
+                  <Link to='/rh/funcionarios'>Funcionários</Link>
                 </Header> 
                 <CadastrarNovoRh/> 
+              </RotasPrivadasRH> }/>
+
+              <Route path='/rh/funcionarios' element={ 
+              <RotasPrivadasRH> 
+                <Header fecharLogin='@rhInfor'>
+                  <Link to='/rh'>Home</Link>
+                  <Link to='/rh/cadastra'>Cadastrar</Link>
+                  <Link to='/rh/funcionarios'>Funcionários</Link>
+                </Header> 
+                <ListdeTodoOsFuncionarios/> 
               </RotasPrivadasRH> }/>
 
         </Routes>
