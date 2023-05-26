@@ -55,6 +55,7 @@ export default function LoginProvider ({children}){
             api.defaults.headers.Authorization = `Bearer ${r.data.token}`;
             setSecretaria(r.data)
             setLodingLoginSec(false)
+            toast.success(`Bem vindo de volta ${r.data.nome}`)
             navigate('/secretaria')
         })
         .catch((err)=> {

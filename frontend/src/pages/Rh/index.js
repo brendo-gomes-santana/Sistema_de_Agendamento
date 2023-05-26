@@ -6,7 +6,6 @@ import './style.scss'
 export default function HomeRh() {
 
   const { rh } = useContext(LoginContext)
-  console.log(rh)
   return (
     <main className='containerHomeRh'>
       <RiAdminLine size={100} color='var(--azul-200)'/>

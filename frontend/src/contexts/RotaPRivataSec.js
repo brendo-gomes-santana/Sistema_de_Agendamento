@@ -10,7 +10,7 @@ export default function RotaPRivataSec({children}) {
   useEffect(()=> {
     const dados = JSON.parse(localStorage.getItem('@inforSec'))
     if(dados){
-      api.defaults.Authorization = `Bearer ${dados.token}`
+      api.defaults.headers.Authorization = `Bearer ${dados.token}`;
       setSecretaria(dados)
       setLoading(false)
     }

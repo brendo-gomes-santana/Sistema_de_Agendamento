@@ -17,6 +17,7 @@ import Servico from '../pages/Rh/Servico'
 
 import RotasPrivataSec from '../contexts/RotaPRivataSec'
 import HomeSec from '../pages/Secretaria'
+import Paciente from '../pages/Secretaria/Paciente'
 
 export default function RouterApp() {
   return (
@@ -77,8 +78,17 @@ export default function RouterApp() {
                   <RotasPrivataSec>
                       <Header fecharLogin='@inforSec'>
                         <Link to='/secretaria'>Home</Link>
+                        <Link to='/paciente'>Paciente</Link>
                       </Header>
                       <HomeSec/> 
+                  </RotasPrivataSec>}/>
+                  <Route path='/paciente' element={ 
+                  <RotasPrivataSec>
+                      <Header fecharLogin='@inforSec'>
+                        <Link to='/secretaria'>Home</Link>
+                        <Link to='/paciente'>Paciente</Link>
+                      </Header>
+                      <Paciente/> 
                   </RotasPrivataSec>}/>
         </Routes>
     </LoginProvider>

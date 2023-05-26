@@ -1,0 +1,42 @@
+.baseDecadastrarList{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    form{
+        max-width: 720px;
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        line-height: 5rem;
+        label{
+            max-width: 400px;
+            width: 720px;
+        }
+    }
+}
+
+.baseInforPaciente{
+    cursor: pointer;
+    max-width: 1000px;
+    width: 90%;
+    margin-top: 1rem;
+
+    border-bottom: 1px solid var(--azul-500);
+
+    font-size: 18px;
+    background: transparent;
+    border: 0;
+}
+
+.containermaxInfor{
+    width: 1000px;
+    border: 1px solid var(--azul-500);
+    border-top: none;
+    padding: 1rem;
+    line-height: 2rem;
+
+    border-radius: 1rem 1rem
+}
