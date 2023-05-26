@@ -53,9 +53,9 @@ router.get('/list/secretaria', ValidarRH, new ListSecretariaController().show)
 router.put('/demissao/secretaria', ValidarRH, new DemissaoSecretariaController().handle)
 
 //ROTAS SERVIÇO
-router.post('/create/servico', new CreateServicoController().handle)
-router.get('/list/servico', new ListServicoController().show)
-router.delete('/remove/servico', new RemoveServicoController().handle)
+router.post('/create/servico', VerificarFunc, new CreateServicoController().handle)
+router.get('/list/servico', VerificarFunc, new ListServicoController().show)
+router.delete('/remove/servico',VerificarFunc, new RemoveServicoController().handle)
 
 //ROTAS DENTISTA
 router.post('/create/dentista', ValidarRH, new createDentistacontroller().handle)

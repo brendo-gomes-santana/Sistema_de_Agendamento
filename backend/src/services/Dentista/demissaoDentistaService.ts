@@ -1,14 +1,14 @@
 import prismaClient from "../../prisma";
 
 class demissaoDentistaService{
-    async execute(id_dentista: string){
+    async execute(id_dent: string){
 
-        if(!id_dentista){
+        if(!id_dent){
             throw new Error('Informe seu id do dentista')
         }
 
         const DemissaoJaOcorreu = await prismaClient.dentista.findFirst({
-            where: { id: id_dentista }
+            where: { id: id_dent }
         })
 
         if(!DemissaoJaOcorreu){
@@ -16,7 +16,7 @@ class demissaoDentistaService{
         }
 
         const demissao = await prismaClient.dentista.update({
-            where: { id: id_dentista},
+            where: { id: id_dent},
             data: {
                 status: false
             }

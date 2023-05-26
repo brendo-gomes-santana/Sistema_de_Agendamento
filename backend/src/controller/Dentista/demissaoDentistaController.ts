@@ -5,10 +5,10 @@ import { demissaoDentistaService } from "../../services/Dentista/demissaoDentist
 class demissaoDentistaController{
     async handle(req: Request, res: Response){
 
-        const  id_dentista  = req.query.id_dentista as string
+        const  id_dent  = req.body.id_dent as string
  
         const inicializacao = new demissaoDentistaService()
-        const demissao = await inicializacao.execute(id_dentista)
+        const demissao = await inicializacao.execute(id_dent)
         
         return res.json(demissao)
     }

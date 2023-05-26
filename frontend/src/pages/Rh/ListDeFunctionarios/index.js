@@ -8,9 +8,11 @@ export default function ListDeFuncionarios() {
 
   const [arrayDoRh, setArrayDoRh] = useState([])
   const [arrayDoSec, setArratDoSec] = useState([])
+  const [arrayDent, setArrayDent] = useState([])
 
   const [abrirDados, setAbrirDados] = useState(null)
-  
+
+  //pegar informações
   async function handleBuscarFunRh(){
     await api.get('list/rh', {
       params: {
@@ -42,6 +44,13 @@ export default function ListDeFuncionarios() {
   }
 
   async function handleBuscarFunDent(){
+    await api.get('list/dentista')
+    .then((r)=> {
+      setArrayDent(r.data)
+    })
+    .catch((err)=> {
+      console.log(err)
+    })
     setAbrirDados('3')
   }
 
@@ -86,6 +95,22 @@ export default function ListDeFuncionarios() {
       console.log(err.response.data.error)
     })
   }
+  async function handleDemitirDent(id_dent){
+    await api.put('/demissao/dentista', {
+        id_dent: id_dent
+    })
+    .then(async()=> {
+      await api.get('/list/dentista')
+      .then((r)=> {
+        setArrayDent(r.data)
+        toast.success('Funcionário não faz parte mais da equipe')
+      })
+    })
+    .catch((err)=> {
+      toast.error(err.response.data.error)
+    })
+  }
+
   return (
     <main className='ContainerListDeFuncionarios'>
         <div className='basedeMenu'>
@@ -132,7 +157,23 @@ export default function ListDeFuncionarios() {
             </>
           )}
           {abrirDados === '3' && (
-          <p>Dentista</p>
+            <>
+            <h3 style={{textAlign: 'center', marginTop:'1rem'}}>Grade de funcionarios Dentistas</h3>
+      
+              {arrayDent?.map((item)=> {
+                return(
+                  <div key={item.id} className='ContainerBaseDeInformação'>
+                    <div>
+                      <p><strong>Nome:</strong> {item.nome}</p>
+                      <p><strong>data de nascimento: </strong> {item.data_de_nascimento}</p>
+                      <p><strong>email:</strong> {item.email}</p>
+                      <p><strong>contato:</strong> {item.contato}</p>
+                    </div>
+                    <Button onClick={() => handleDemitirDent(item.id)}>Demitir</Button>
+                  </div>
+                )
+              })}
+            </>
           )}
         </div>
     </main>
