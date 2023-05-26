@@ -6,6 +6,7 @@ import { LoginContext } from "./LoginContext"
 import Loding from "../components/Loading"
 
 import api from "../service"
+
 export default function PrivataRh ({children}){
 
     const { authRH, setRh } = useContext(LoginContext)

@@ -22,6 +22,7 @@ export default function LoginProvider ({children}){
             let rh = {
                 id: r.data.id,
                 nome: r.data.nome,
+                email: r.data.email,
                 token: r.data.token
             }
 
