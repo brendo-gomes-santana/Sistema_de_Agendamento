@@ -70,9 +70,9 @@ export default function CadastrarNovoRh() {
       return;
     }
 
-    api.post('create/secretaria', {
+    await api.post('create/secretaria', {
       nome: nomeSecretaria,
-      contatoSecretaria: contatoSecretaria,
+      contato: contatoSecretaria,
       endereco: enderecoSecretaria,
       password: passwordSecretaria
     })
@@ -81,7 +81,7 @@ export default function CadastrarNovoRh() {
       setNomeSecretaria('')
       setContatoSecretaria('')
       setEnderecoSecretaria('')
-      passwordSecretaria('')
+      setPasswordSecretaria('')
     })
     .catch((err)=> {
       toast.error(err.response.data.error)

@@ -12,6 +12,9 @@ export default function LoginProvider ({children}){
     const [rh, setRh] = useState(null)
     const [loadingLogin, setLoadingLogin] = useState(false)
 
+    const [secretaria, setSecretaria] = useState(null)
+    const [lodingLoginSec, setLodingLoginSec] = useState(false)
+
     async function LoginRh(email, password){
         setLoadingLogin(true)
         await api.post('session/rh',{
@@ -34,11 +37,30 @@ export default function LoginProvider ({children}){
             navigate('/rh')
 
         }).catch((err) => {
-            console.log(err)
             toast.error(err.response.data.error)
             setLoadingLogin(false)
         })
         
+    }
+
+    async function LoginSec(nome, password){
+        setLodingLoginSec(true)
+
+        await api.post('/session/secretaria',{
+            nome,
+            password
+        })
+        .then((r)=> {
+            localStorage.setItem('@inforSec', JSON.stringify(r.data))
+            api.defaults.headers.Authorization = `Bearer ${r.data.token}`;
+            setSecretaria(r.data)
+            setLodingLoginSec(false)
+            navigate('/secretaria')
+        })
+        .catch((err)=> {
+            toast.error(err.response.data.error)
+            setLodingLoginSec(false)
+        })
     }
 
     async function logout(local){
@@ -54,8 +76,13 @@ export default function LoginProvider ({children}){
             authRH: !!rh,
             rh,
             
-            
+            LoginSec,
+            setSecretaria,
+            authSec: !!secretaria,
+            secretaria,
+
             loadingLogin,
+            lodingLoginSec,
             logout,            
         }}>
             {children}

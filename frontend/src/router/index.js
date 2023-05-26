@@ -15,6 +15,9 @@ import CadastrarNovoRh from '../pages/Rh/CadastrarNovoRh/CadastrarNovoRh'
 import ListdeTodoOsFuncionarios from '../pages/Rh/ListDeFunctionarios'
 import Servico from '../pages/Rh/Servico'
 
+import RotasPrivataSec from '../contexts/RotaPRivataSec'
+import HomeSec from '../pages/Secretaria'
+
 export default function RouterApp() {
   return (
     <Router>
@@ -68,7 +71,15 @@ export default function RouterApp() {
                 </Header> 
                 <Servico/> 
               </RotasPrivadasRH> }/>
-
+               
+               { /*Rotas de Secretária*/ }
+               <Route path='/secretaria' element={ 
+                  <RotasPrivataSec>
+                      <Header fecharLogin='@inforSec'>
+                        <Link to='/secretaria'>Home</Link>
+                      </Header>
+                      <HomeSec/> 
+                  </RotasPrivataSec>}/>
         </Routes>
     </LoginProvider>
     </Router>

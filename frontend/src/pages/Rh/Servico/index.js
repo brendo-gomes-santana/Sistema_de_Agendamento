@@ -61,7 +61,7 @@ export default function Servico() {
     <main className='ContainerServico'>
       <section className='navServico'>
         <button onClick={ () => setNavSelectionado('1') } >Cadastrar Novo Serviço</button>
-        <button onClick={handleListServico} >Lista Serviços</button>
+        <button onClick={handleListServico} >Lista de Serviços</button>
       </section>
       <section className='BaseServico'>
         {navSelectionado === '1' && (
