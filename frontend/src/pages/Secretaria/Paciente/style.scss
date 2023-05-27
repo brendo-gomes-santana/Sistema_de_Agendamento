@@ -1,3 +1,13 @@
+.navBasePaciente{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    button{
+        margin: 0 1rem;
+    }
+}
+
 .baseDecadastrarList{
     width: 100%;
     display: flex;
@@ -13,7 +23,11 @@
         line-height: 5rem;
         label{
             max-width: 400px;
-            width: 720px;
+            width: 80%;
+            input{
+                max-width: 100%;
+                width: 70%;
+            }
         }
     }
 }
@@ -32,7 +46,8 @@
 }
 
 .containermaxInfor{
-    width: 1000px;
+    max-width: 1000px;
+    width: 90%;
     border: 1px solid var(--azul-500);
     border-top: none;
     padding: 1rem;

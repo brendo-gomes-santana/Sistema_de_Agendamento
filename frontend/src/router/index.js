@@ -18,6 +18,7 @@ import Servico from '../pages/Rh/Servico'
 import RotasPrivataSec from '../contexts/RotaPRivataSec'
 import HomeSec from '../pages/Secretaria'
 import Paciente from '../pages/Secretaria/Paciente'
+import Agendamento from '../pages/Secretaria/Agendamento'
 
 export default function RouterApp() {
   return (
@@ -78,18 +79,42 @@ export default function RouterApp() {
                   <RotasPrivataSec>
                       <Header fecharLogin='@inforSec'>
                         <Link to='/secretaria'>Home</Link>
-                        <Link to='/paciente'>Paciente</Link>
+                        <Link to='/secretaria/paciente'>Paciente</Link>
+                        <Link to='/secretaria/servico'>Serviços</Link>
+                        <Link to='/secretaria/agendamento'>Agendamento</Link>
                       </Header>
                       <HomeSec/> 
                   </RotasPrivataSec>}/>
-                  <Route path='/paciente' element={ 
+                  <Route path='/secretaria/paciente' element={ 
                   <RotasPrivataSec>
                       <Header fecharLogin='@inforSec'>
                         <Link to='/secretaria'>Home</Link>
-                        <Link to='/paciente'>Paciente</Link>
+                        <Link to='/secretaria/paciente'>Paciente</Link>
+                        <Link to='/secretaria/servico'>Serviços</Link>
+                        <Link to='/secretaria/agendamento'>Agendamento</Link>
                       </Header>
                       <Paciente/> 
                   </RotasPrivataSec>}/>
+                  <Route path='/secretaria/servico' element={ 
+                    <RotasPrivataSec> 
+                      <Header fecharLogin='@inforSec'>
+                          <Link to='/secretaria'>Home</Link>
+                          <Link to='/secretaria/paciente'>Paciente</Link>
+                          <Link to='/secretaria/servico'>Serviços</Link>
+                          <Link to='/secretaria/agendamento'>Agendamento</Link>
+                      </Header> 
+                      <Servico/> 
+                    </RotasPrivataSec> }/>
+                    <Route path='/secretaria/agendamento' element={ 
+                    <RotasPrivataSec> 
+                      <Header fecharLogin='@inforSec'>
+                          <Link to='/secretaria'>Home</Link>
+                          <Link to='/secretaria/paciente'>Paciente</Link>
+                          <Link to='/secretaria/servico'>Serviços</Link>
+                          <Link to='/secretaria/agendamento'>Agendamento</Link>
+                      </Header> 
+                      <Agendamento/> 
+                    </RotasPrivataSec> }/>
         </Routes>
     </LoginProvider>
     </Router>

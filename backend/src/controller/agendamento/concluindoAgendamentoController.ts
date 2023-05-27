@@ -4,6 +4,7 @@ import { concluindoAgendamento } from "../../services/agendamento/concluindoAgen
 
 class concluindoAgendamentoController{
     async handle(req: Request, res: Response){
+        
         const agendamento_id = req.query.agendamento_id as string
 
         const inicializacao = new concluindoAgendamento()

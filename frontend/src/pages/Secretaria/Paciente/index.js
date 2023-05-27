@@ -60,8 +60,8 @@ export default function Paciente() {
   return (
     <main>
       <section className='navBasePaciente'>
-        <button onClick={() => setNav('1')}>Cadastrar paciente</button>
-        <button onClick={handleListPaciente}>Listar pacientes</button>
+        <Button onClick={() => setNav('1')}>Cadastrar paciente</Button>
+        <Button onClick={handleListPaciente}>Listar pacientes</Button>
       </section>
 
       <section className='baseDecadastrarList'>

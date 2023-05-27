@@ -109,7 +109,7 @@ export default function CadastrarNovoRh() {
         setEmailDentista('')
         setContatoDentista('')
         setData_de_nascimento('')
-        enderecoDentista('')
+        setEnderecoDentista('')
         setPasswordDentista('')
         toast.success('Dentista cadastra com sucesso!')
       })
