@@ -5,8 +5,8 @@ class ListPorUserController{
     async show(req: Request, res: Response){
 
         const user_id = req.query.user_id as string
-        const status = req.body.status as boolean
-
+        const stts = req.query.stts as string
+        const status = stts === 'true'
         const inicializacao = new ListPorUserService()
         const listaPorUser = await inicializacao.execute(user_id, status)
 

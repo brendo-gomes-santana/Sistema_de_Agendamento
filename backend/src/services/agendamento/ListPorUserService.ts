@@ -9,7 +9,7 @@ class ListPorUserService{
 
         const lista = await prismaClient.agendamento.findMany({
             where: {
-                id: user_id ,
+                user_id: user_id ,
                 status 
             },
            include: {

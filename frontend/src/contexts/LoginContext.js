@@ -18,6 +18,9 @@ export default function LoginProvider ({children}){
     const [dentista, setDentista] = useState(null)
     const [loadingLoginDent, setLoadingLoginDent] = useState(false)
 
+    const [user, setUser] =  useState(null)
+    const [loadingUser, setLoadingUser] = useState(false)
+
     async function LoginRh(email, password){
         setLoadingLogin(true)
         await api.post('session/rh',{
@@ -87,6 +90,29 @@ export default function LoginProvider ({children}){
         })
     }
 
+    async function LoginUser(email, password){
+        setLoadingUser(true)
+
+        await api.post('/session/user', {
+            email,
+            password
+        })
+        .then((r)=> {
+            setLoadingUser(false)
+            setUser(r.data)
+            localStorage.setItem('@inforUser', JSON.stringify(r.data))
+            api.defaults.headers.Authorization = `Bearer ${r.data.token}`
+            toast.success(`Bem vindo de volta ${r.data.nome}`)
+
+            navigate('/usuario')
+        })
+        .catch((err)=> {
+            toast.error(err.response.data.error)
+            setLoadingLoginDent(false)
+        })
+
+    }
+
     async function logout(local){
         toast.success(`Volte Sempre`)
         localStorage.removeItem(local)
@@ -110,6 +136,12 @@ export default function LoginProvider ({children}){
             authDent: !!dentista,
             dentista,
 
+            LoginUser,
+            setUser,
+            authUser: !!user,
+            user,
+
+            loadingUser,
             loadingLogin,
             lodingLoginSec,
             loadingLoginDent,

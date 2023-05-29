@@ -24,6 +24,9 @@ import RotaPrivataDentista from '../contexts/RotaPrivataDentista'
 import HomeDentista from '../pages/Dentista'
 import AgendamentoDentista from '../pages/Dentista/Agendamento'
 
+import RotaPrivataUser from '../contexts/RotaPrivataUser'
+import HomeUser from '../pages/User'
+
 export default function RouterApp() {
   return (
     <Router>
@@ -138,6 +141,12 @@ export default function RouterApp() {
                   <AgendamentoDentista/>
               </RotaPrivataDentista>
                }/>
+               <Route path='/usuario' element={ 
+                <RotaPrivataUser>
+                  <Header fecharLogin='@inforUser'>
+                  </Header>
+                  <HomeUser/>
+                </RotaPrivataUser> }/>
         </Routes>
     </LoginProvider>
     </Router>

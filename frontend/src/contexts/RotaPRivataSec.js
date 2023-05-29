@@ -29,7 +29,7 @@ export default function RotaPRivataSec({children}) {
             <Loding/>
         </div>
     )
-}
+  }
   if(!authSec){
     return <Navigate to='/login/secretaria'/>
   }

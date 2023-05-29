@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { BiUser, BiLoaderCircle } from 'react-icons/bi'
 
 import './style.scss'
@@ -8,7 +8,11 @@ import { Button } from '../../components/Button'
 
 import { toast } from 'react-toastify'
 
+import { LoginContext } from '../../contexts/LoginContext'
+
 export default function LoginUser() {
+
+    const { LoginUser, loadingUser } = useContext(LoginContext)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -21,6 +25,8 @@ export default function LoginUser() {
             toast.error('Preenchar Todas as informações')
             return;
         }
+        
+        LoginUser(email, password)
 
     }
     return (
@@ -35,7 +41,7 @@ export default function LoginUser() {
                     Senha: <Input type='password' placeholder='Digite sua senha' 
                                 value={password} onChange={ v => setPassword(v.target.value)}/>
                 </label>
-                <Button type='submit'>{false? <BiLoaderCircle className='loader'/> : <span>Entrar</span>}</Button>
+                <Button type='submit'>{loadingUser? <BiLoaderCircle className='loader'/> : <span>Entrar</span>}</Button>
             </form>
         </main>
     )
