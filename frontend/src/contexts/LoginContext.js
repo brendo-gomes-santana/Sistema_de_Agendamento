@@ -15,6 +15,9 @@ export default function LoginProvider ({children}){
     const [secretaria, setSecretaria] = useState(null)
     const [lodingLoginSec, setLodingLoginSec] = useState(false)
 
+    const [dentista, setDentista] = useState(null)
+    const [loadingLoginDent, setLoadingLoginDent] = useState(false)
+
     async function LoginRh(email, password){
         setLoadingLogin(true)
         await api.post('session/rh',{
@@ -64,6 +67,26 @@ export default function LoginProvider ({children}){
         })
     }
 
+    async function LoginDentista(email, password){
+        setLoadingLoginDent(true)
+        await api.post('/session/dentista', {
+            email, 
+            password
+        })
+        .then((r)=> {
+            localStorage.setItem('@inforDentista', JSON.stringify(r.data))
+            api.defaults.headers.Authorization = `Bearer ${r.data.token}`;
+            toast.success(`Bem vindo de volta ${r.data.nome}`)
+            setDentista(r.data)
+            setLoadingLoginDent(false)
+            navigate('/dentista')
+        })
+        .catch((err)=> {
+            toast.error(err.response.data.error)
+            setLoadingLoginDent(false)
+        })
+    }
+
     async function logout(local){
         toast.success(`Volte Sempre`)
         localStorage.removeItem(local)
@@ -82,8 +105,14 @@ export default function LoginProvider ({children}){
             authSec: !!secretaria,
             secretaria,
 
+            LoginDentista,
+            setDentista,
+            authDent: !!dentista,
+            dentista,
+
             loadingLogin,
             lodingLoginSec,
+            loadingLoginDent,
             logout,            
         }}>
             {children}

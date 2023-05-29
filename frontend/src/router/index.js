@@ -20,6 +20,10 @@ import HomeSec from '../pages/Secretaria'
 import Paciente from '../pages/Secretaria/Paciente'
 import Agendamento from '../pages/Secretaria/Agendamento'
 
+import RotaPrivataDentista from '../contexts/RotaPrivataDentista'
+import HomeDentista from '../pages/Dentista'
+import AgendamentoDentista from '../pages/Dentista/Agendamento'
+
 export default function RouterApp() {
   return (
     <Router>
@@ -114,7 +118,26 @@ export default function RouterApp() {
                           <Link to='/secretaria/agendamento'>Agendamento</Link>
                       </Header> 
                       <Agendamento/> 
-                    </RotasPrivataSec> }/>
+                </RotasPrivataSec> }/>
+
+              <Route path='/dentista' element={ 
+              <RotaPrivataDentista>
+                      <Header fecharLogin='@inforDentista'>
+                          <Link to='/dentista'>Home</Link>
+                          <Link to='/dentista/agendamento'>Agendamento</Link>
+                      </Header>
+                  <HomeDentista/>
+              </RotaPrivataDentista>
+               }/>
+              <Route path='/dentista/agendamento' element={ 
+              <RotaPrivataDentista>
+                      <Header fecharLogin='@inforDentista'>
+                          <Link to='/dentista'>Home</Link>
+                          <Link to='/dentista/agendamento'>Agendamento</Link>
+                      </Header>
+                  <AgendamentoDentista/>
+              </RotaPrivataDentista>
+               }/>
         </Routes>
     </LoginProvider>
     </Router>

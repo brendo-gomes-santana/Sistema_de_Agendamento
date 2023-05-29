@@ -1,0 +1,18 @@
+.ContainerHomeDentista{
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+}
+
+.boxAgendamentoDentista{
+    width: 100%;
+    max-width: 800px;
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: aliceblue;
+    line-height: 1.5rem;
+}
