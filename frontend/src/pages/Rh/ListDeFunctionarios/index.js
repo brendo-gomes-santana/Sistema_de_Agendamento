@@ -4,6 +4,9 @@ import { Button } from '../../../components/Button'
 import api from '../../../service'
 
 import './style.scss'
+
+import Loading from '../../../components/Loading'
+
 export default function ListDeFuncionarios() {
 
   const [arrayDoRh, setArrayDoRh] = useState([])
@@ -11,9 +14,12 @@ export default function ListDeFuncionarios() {
   const [arrayDent, setArrayDent] = useState([])
 
   const [abrirDados, setAbrirDados] = useState(null)
+  const [loading, setloading] = useState(false)
 
   //pegar informações
   async function handleBuscarFunRh(){
+    setAbrirDados(null)
+    setloading(true)
     await api.get('list/rh', {
       params: {
         status: true
@@ -21,14 +27,18 @@ export default function ListDeFuncionarios() {
     })
     .then((r)=> {
       setArrayDoRh(r.data)
+      setloading(false)
     })
     .catch((err)=> {
       console.log(err)
+      setloading(false)
     })
     setAbrirDados('1')
   }
 
   async function handleBuscarFunSec(){
+    setAbrirDados(null)
+    setloading(true)
     await api.get('list/secretaria', {
       params: {
         status: true
@@ -36,20 +46,26 @@ export default function ListDeFuncionarios() {
     })
     .then((r)=> {
       setArratDoSec(r.data)
+      setloading(false)
     })
     .catch((err)=> {
       console.log(err)
+      setloading(false)
     })
     setAbrirDados('2')
   }
 
   async function handleBuscarFunDent(){
+    setAbrirDados(null)
+    setloading(true)
     await api.get('list/dentista')
     .then((r)=> {
       setArrayDent(r.data)
+      setloading(false)
     })
     .catch((err)=> {
       console.log(err)
+      setloading(false)
     })
     setAbrirDados('3')
   }
@@ -119,6 +135,14 @@ export default function ListDeFuncionarios() {
           <Button onClick={handleBuscarFunDent}>funcionarios Do Dentistas</Button>
         </div>
         <div className='BaseDasInfor'>
+          {loading && (
+            <>
+              <br/>
+              <br/>
+              <Loading/>
+            </>
+            
+          )}
           {abrirDados === '1' && (
             <>
             <h3 style={{textAlign: 'center', marginTop:'1rem'}}>Grade de funcionarios do RH</h3>
