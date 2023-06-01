@@ -41,9 +41,10 @@ router.post('/session/secretaria', new SessionSecretariaController().handle)
 router.post('/session/dentista', new sessionDentistaController().hadnle)
 router.post('/session/user', new sessionUserController().handle)
 
+router.post('/create/rh', new CreateRhController().handle)
+
 //ROTAS DE RH
 router.use(Auth)
-router.post('/create/rh', new CreateRhController().handle)
 router.get('/list/rh', ValidarRH, new listRhController().show)
 router.put('/demissao/rh', ValidarRH,  new DemitidoRhController().handle)
 
