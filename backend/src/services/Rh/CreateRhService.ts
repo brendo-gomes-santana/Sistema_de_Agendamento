@@ -25,7 +25,7 @@ class CreateRhService {
         }
 
         //codigo para criar um rh - esse codigo vai ficar com o chefe.
-        if(codigo != process.env.CODIGO){
+        if(codigo != '123456789'){
             throw new Error('codigo de criação errado')
         }
 
